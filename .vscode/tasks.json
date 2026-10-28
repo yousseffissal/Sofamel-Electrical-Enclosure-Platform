@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Vite Dev Admin",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend/admin"
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Vite Dev Client",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend/client"
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Laravel Server",
+      "type": "shell",
+      "command": "php artisan serve",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Queue Worker",
+      "type": "shell",
+      "command": "php artisan queue:work",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Reverb Server",
+      "type": "shell",
+      "command": "php artisan reverb:start",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Start Full Project Admin",
+      "dependsOn": [
+        "Vite Dev Admin",
+        "Laravel Server",
+        "Queue Worker",
+        "Reverb Server",
+      ],
+      "dependsOrder": "parallel"
+    },
+    {
+      "label": "Start Full Project Client",
+      "dependsOn": [
+        "Vite Dev Client",
+        "Laravel Server",
+        "Queue Worker",
+        "Reverb Server",
+      ],
+      "dependsOrder": "parallel"
+    }
+  ]
+}
